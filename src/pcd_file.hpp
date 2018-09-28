@@ -10,12 +10,11 @@ class PCD_FILE
 {
 private:
 	std::fstream fs;
-	int num_points;
 
 public:
 	PCD_FILE(std::string pcd_filename, const int num_points);
 	~PCD_FILE();
-	int append(cv::Point3_<float> *point);
+	int append(cv::Point3_<float> *point, int num = 1);
 
 };
 

@@ -1,11 +1,11 @@
-#ifndef _MOTOR_HPP_
-#define _MOTOR_HPP_
+#ifndef _ROTATOR_HPP_
+#define _ROTATOR_HPP_
 
 
 class ROTATOR{
 
 private:
-	char cmd[20];
+	char *cmd;
 
 	int serial_fd;
 
@@ -22,4 +22,4 @@ public:
 	
 };
 
-#endif // _MOTOR_HPP_
+#endif // _ROTATOR_HPP_

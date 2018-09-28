@@ -1,3 +1,9 @@
+/* pcd_file.cpp
+ * 写pcd文件
+ * 
+ * 
+ */
+
 #include "pcd_file.hpp"
 #include <string>
 #include <fstream>
@@ -32,8 +38,11 @@ PCD_FILE::~PCD_FILE()
 	fs.close();
 }
 
-int PCD_FILE::append(Point3_<float> *point)
+int PCD_FILE::append(Point3_<float> *point, int num)
 {
-	fs << point->x << " " << point->y << " " << point->z << endl;
+    for (int i = 0; i < num; i++ ) {
+        fs << (point + i)->x << " " << (point + i)->y << " " << (point + i)->z << endl;
+    }
+	
 	return 0;
 }

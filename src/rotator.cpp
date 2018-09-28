@@ -1,3 +1,9 @@
+/* rotator.cpp
+ * 控制舵机
+ * 
+ * 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -11,7 +17,8 @@
 
 ROTATOR::ROTATOR(const char *dev)
 {
-
+	cmd = new char[20];
+	
 	serial_fd = OpenDev(dev);
     SetSpeed(serial_fd, 115200);
     if ( (SetParity(serial_fd,8 ,1 ,'N')) == -1 )  {
@@ -35,6 +42,8 @@ ROTATOR::ROTATOR(const char *dev)
 
 ROTATOR::~ROTATOR()
 {
+	delete cmd;
+	
 	close(serial_fd);
 }
 

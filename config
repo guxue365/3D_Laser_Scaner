@@ -1,0 +1,27 @@
+# FORMAT: X=a, no space, no blank line. Comment like this line.
+# focal length
+f=16.0
+# baseline length
+s=43.0
+# angle beta in degree
+angle_beta_degree=83.53
+# rotation radius
+rotation_r=19.0
+#
+# image width
+image_width=2592
+# image height
+image_height=1944
+# pixel_size
+image_pixel_size=0.0022
+#
+rotator_serial_port=/dev/ttyUSB0
+# 0(start) -- rotator_angle_degree -- 180(maximum limit)
+rotator_angle_degree=90.0
+# step
+rotator_angle_resolution=1.0
+# rotator zero point in global coordinate
+rotator_coordinate_transform_base_angle_degree=-90.0
+#
+# output pcd filename
+pcd_out_path=./point_cloud.pcd
