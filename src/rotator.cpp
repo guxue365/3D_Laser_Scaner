@@ -42,7 +42,7 @@ ROTATOR::ROTATOR(const char *dev)
 
 ROTATOR::~ROTATOR()
 {
-	delete cmd;
+	delete[] cmd;
 	
 	close(serial_fd);
 }
@@ -84,21 +84,21 @@ int name_arr[] = {
 	115200, 38400, 19200, 9600, 4800, 2400, 1200, 300 };
 void ROTATOR::SetSpeed(int fd, int speed)
 {
-    int i; 
-    int status; 
+    int i;
+    int status;
     struct termios Opt;
-    tcgetattr(fd, &Opt); 
-    for ( i = 0; i < sizeof(speed_arr) / sizeof(int); i++) { 
-        if (speed == name_arr[i]) {     
-            tcflush(fd, TCIOFLUSH);     
-            cfsetispeed(&Opt, speed_arr[i]);  
-            cfsetospeed(&Opt, speed_arr[i]);   
-            status = tcsetattr(fd, TCSANOW, &Opt);  
-            if  (status != 0) {        
-            perror("tcsetattr fd");  
-            return;     
+    tcgetattr(fd, &Opt);
+    for ( i = 0; i < sizeof(speed_arr) / sizeof(int); i++) {
+        if (speed == name_arr[i]) {
+            tcflush(fd, TCIOFLUSH);
+            cfsetispeed(&Opt, speed_arr[i]);
+            cfsetospeed(&Opt, speed_arr[i]);
+            status = tcsetattr(fd, TCSANOW, &Opt);
+            if  (status != 0) {
+            perror("tcsetattr fd");
+            return;
         }
-        tcflush(fd,TCIOFLUSH);   
+        tcflush(fd,TCIOFLUSH);
     }
   }
 }
@@ -113,10 +113,10 @@ int ROTATOR::SetParity(int fd,int databits,int stopbits,int parity)
 
     options.c_cflag &= ~CSIZE; 
     switch (databits) {   
-    case 7:     
-        options.c_cflag |= CS7; 
+    case 7:
+        options.c_cflag |= CS7;
         break;
-    case 8:     
+    case 8:
         options.c_cflag |= CS8;
         break;   
     default:    

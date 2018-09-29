@@ -54,15 +54,15 @@ int main(int argc, char *argv[])
 	
 	// output pcd file
 	std::string pcd_filename( config_ptr->pcd_out_path.c_str() );
-	PCD_FILE pcd_file(pcd_filename, image0.rows * floor(config_ptr->rotator_angle_degree / config_ptr->rotator_angle_resolution));
+	PCD_FILE pcd_file(pcd_filename, image0.rows * ( floor( (config_ptr->rotator_angle_degree - 0.00001) / config_ptr->rotator_angle_resolution) + 1 ));
 	
 	// initialize scaner
 	SCANER scaner1(config_ptr);
 	int *cache_pixel_x = new int[image0.rows];
 	Point3_<float> *cache_point_coordinate = new Point3_<float>[image0.rows];
 	Point3_<float> *cache_point_coordinate_2 = new Point3_<float>[image0.rows];
-		
-	for( int deg = 0; deg < config_ptr->rotator_angle_degree; deg += config_ptr->rotator_angle_resolution) {
+	
+	for( float deg = 0.0; deg < config_ptr->rotator_angle_degree; deg += config_ptr->rotator_angle_resolution) {
 		// run rotator
 		cout << "run_rotator(), " << deg << " degrees" << endl;
 		rotator1.run_rotator(deg);
@@ -80,10 +80,10 @@ int main(int argc, char *argv[])
 		pcd_file.append(cache_point_coordinate_2, image0.rows);
 
     }
-		
-	delete cache_pixel_x;
-	delete cache_point_coordinate;
-	delete cache_point_coordinate_2;
+	
+	delete[] cache_pixel_x;
+	delete[] cache_point_coordinate;
+	delete[] cache_point_coordinate_2;
 	
 	return 0;
 }

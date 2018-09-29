@@ -18,14 +18,13 @@ int extract1(const cv::Mat *img_ptr, int *cache_pixel_x)
 	int height = img_gray.rows;
  	int	width = img_gray.cols;
 	
-	static const unsigned char THRESHOLD_MIN_PWR = 25;
+	const unsigned char THRESHOLD_MIN_PWR = 25;
     int maxPos = 0;
     unsigned char max = 0;
 
     int currentPos = 0;
 	
 	for (int i = 0; i < height; i++) {
-		
 		maxPos = 0;
 		currentPos = 0;
 		max = 0;
@@ -41,12 +40,11 @@ int extract1(const cv::Mat *img_ptr, int *cache_pixel_x)
 
 		float logicPwr = 0.0f, totalPwr=0.0f;
 
-		for ( currentPos = maxPos-3; currentPos <= maxPos+3; currentPos++)
-		{
+		for ( currentPos = maxPos-3; currentPos <= maxPos+3; currentPos++) {
 		    float currentPwr;
 		    if (currentPos >= 0 && currentPos < width){
 		       currentPwr = img_gray.at<uchar>(i, currentPos);
-		    }else{
+		    } else {
 		       currentPwr = 0.0f;
 		    }
 		    logicPwr += currentPwr;
@@ -70,17 +68,14 @@ int extract2(const cv::Mat *img_ptr, int *cache_pixel_x)
 	float max = 0.0;
     int maxPos = -1;
 
-    for (unsigned int i = 0; i < height; i++)
-    {
+    for (unsigned int i = 0; i < height; i++) {
         max  = 0.0;
         maxPos = -1;
-        for (int j = 0; j < width; j++)
-        {
+        for (int j = 0; j < width; j++) {
             brightness = (img_ptr->at<Vec3b>(i,j)[0] & 0xFF ) / 255.0 +
                          (img_ptr->at<Vec3b>(i,j)[1] & 0xFF ) / 255.0 +
                          (img_ptr->at<Vec3b>(i,j)[2] & 0xFF ) / 255.0 * 100.0;
-            if (brightness > max)
-            {
+            if (brightness > max) {
                 max = brightness;
                 maxPos = j;
             }
@@ -88,14 +83,13 @@ int extract2(const cv::Mat *img_ptr, int *cache_pixel_x)
         
 		float logicPwr = 0.0f, totalPwr=0.0f;
 
-		for (int currentPos = maxPos-3; currentPos <= maxPos+3; currentPos++)
-		{
+		for (int currentPos = maxPos-3; currentPos <= maxPos+3; currentPos++) {
 		    float currentPwr;
-		    if (currentPos>=0 && currentPos < width){
+		    if (currentPos>=0 && currentPos < width) {
 		       currentPwr = (img_ptr->at<Vec3b>(i,currentPos)[0] & 0xFF ) / 255.0 +
                          (img_ptr->at<Vec3b>(i,currentPos)[1] & 0xFF ) / 255.0 +
                          (img_ptr->at<Vec3b>(i,currentPos)[2] & 0xFF ) / 255.0 * 100.0;
-		    }else{
+		    } else {
 		       currentPwr = 0.0f;
 		    }
 		    logicPwr += currentPwr;
@@ -117,25 +111,21 @@ int extract2_1(const cv::Mat *img_ptr, int *cache_pixel_x)
 	float max = 0.0;
     int maxPos = -1;
 
-    for (unsigned int i = 0; i < height; i++)
-    {
+    for (unsigned int i = 0; i < height; i++) {
         max  = 0.0;
         maxPos = -1;
-        for (int j = 0; j < width; j++)
-        {
+        for (int j = 0; j < width; j++) {
             brightness = (img_ptr->at<Vec3b>(i,j)[0] & 0xFF ) / 255.0 +
                          (img_ptr->at<Vec3b>(i,j)[1] & 0xFF ) / 255.0 +
                          (img_ptr->at<Vec3b>(i,j)[2] & 0xFF ) / 255.0 * 100.0;
-            if (brightness > max)
-            {
+            if (brightness > max) {
                 max = brightness;
                 maxPos = j;
             }
         }
         
         int currentPos = 0;
-		for (currentPos = maxPos; currentPos < width; currentPos++)
-		{
+		for (currentPos = maxPos; currentPos < width; currentPos++) {
 		    brightness = (img_ptr->at<Vec3b>(i,currentPos)[0] & 0xFF ) / 255.0 +
                          (img_ptr->at<Vec3b>(i,currentPos)[1] & 0xFF ) / 255.0 +
                          (img_ptr->at<Vec3b>(i,currentPos)[2] & 0xFF ) / 255.0 * 100.0;
@@ -148,8 +138,7 @@ int extract2_1(const cv::Mat *img_ptr, int *cache_pixel_x)
 		}
 		int lb = currentPos;
 		
-		for (currentPos = maxPos; currentPos > 0; currentPos--)
-		{
+		for (currentPos = maxPos; currentPos > 0; currentPos--) {
 		    brightness = (img_ptr->at<Vec3b>(i,currentPos)[0] & 0xFF ) / 255.0 +
                          (img_ptr->at<Vec3b>(i,currentPos)[1] & 0xFF ) / 255.0 +
                          (img_ptr->at<Vec3b>(i,currentPos)[2] & 0xFF ) / 255.0 * 100.0;

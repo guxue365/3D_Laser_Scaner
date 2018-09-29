@@ -1,5 +1,5 @@
 /* single_line_test.cpp
- * 单条激光线测距主函数
+ * 单条激光线测距 主函数
  * 
  * 
  */
@@ -95,8 +95,8 @@ int main(int argc, char *argv[])
 	destroyWindow("Window Original");
 	destroyWindow("Window Laser");
 	
-	delete cache_pixel_x;
-	delete cache_point_coordinate;
+	delete[] cache_pixel_x;
+	delete[] cache_point_coordinate;
 	
 	return 0;
 }

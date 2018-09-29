@@ -7,7 +7,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <string.h>
+#include <cstring>
 
 #include "read_config.hpp"
 

@@ -1,24 +1,3 @@
-| - src
-  | - extract.cpp
-  | - extract.hpp
-  | - pcd_file.cpp
-  | - pcd_file.hpp
-  | - rotator.cpp
-  | - rotator.hpp
-  | - rotator_test.cpp
-  | - scaner.cpp
-  | - utils.cpp
-  | - utils.hpp
-  | - write_pcd.cpp
-
-| - bin
-  | - rotator_test
-  | - scaner
-  | - write_pcd
-
-| - Makefile
-
-
 ## Usage:
 ```
 make all
